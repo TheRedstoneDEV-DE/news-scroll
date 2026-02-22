@@ -10,7 +10,7 @@ void fancy_print(WINDOW *win, int row, int col, const char *text, int speed_ms, 
       wrefresh(win);
       return;
     }
-    char buf[1024];
+    char buf[len];
     strncpy(buf, text, i);
     buf[i] = 0;
     mvwprintw(win, row, col, "%s", buf);
@@ -20,6 +20,9 @@ void fancy_print(WINDOW *win, int row, int col, const char *text, int speed_ms, 
 }
 
 void cut_leading_space(WINDOW *win, int row, int col, char buffer[]) {
+  if (buffer[0] == 0) { // in case of an empty string
+    return;
+  }
   if (buffer[0] == ' '){
     mvwprintw(win, row, col, "%s", buffer+1); // cut leading space from buffer
   } else {
