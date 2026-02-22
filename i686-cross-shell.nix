@@ -30,6 +30,7 @@ let
     NIX_CFLAGS_COMPILE = "-mtune=pentium3 -mno-sse ${old.NIX_CFLAGS_COMPILE or ''''}";
   });
 in pkgs.mkShell {
+  keep-outputs = true;
   nativeBuildInputs = [
     pkgs.pkgsCross.gnu32.gcc
     pkgs.pkgsCross.gnu32.binutils
